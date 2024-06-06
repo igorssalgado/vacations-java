@@ -18,25 +18,26 @@
                     <div class="row mb-3">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Start date</span>
-                            <input class="form-control" th:field="${vacationDTO.startDate}">
+                            <input class="form-control" th:field="${vacationDTO.startDate}" placeholder="YYYY/MM/DD">
                         </div>
                         <p th:if="${#fields.hasErrors('startDate')}" th:errorclass="text-danger"
                             th:errors="${vacationDTO.startDate}"></p>
                     </div>
 
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">End date</span>
-                            <input class="form-control" th:field="${vacationDTO.endDate}">
+                            <input class="form-control" th:field="${vacationDTO.endDate}" placeholder="YYYY/MM/DD">
                         </div>
                         <p th:if="${#fields.hasErrors('endDate')}" th:errorclass="text-danger"
                             th:errors="${vacationDTO.endDate}"></p>
-                    </div>
+                    </div> -->
 
                     <div class="row mb-3">
                         <select id="vacation-days" class="form-select" aria-label="Vacation days"
                             th:field="${vacationDTO.vacationDays}">
                             <option selected value="15">15</option>
+                            <option value="20">20</option>
                             <option value="30">30</option>
                         </select>
 
