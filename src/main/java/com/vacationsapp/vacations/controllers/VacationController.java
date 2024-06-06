@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vacationsapp.vacations.models.VacationDTO;
 import com.vacationsapp.vacations.models.VacationModel;
-import com.vacationsapp.vacations.services.VacationRepository;
+import com.vacationsapp.vacations.services.VacationService;
 
 import jakarta.validation.Valid;
 
@@ -22,11 +22,11 @@ import jakarta.validation.Valid;
 public class VacationController {
 
     @Autowired
-    VacationRepository repo;
+    VacationService repo;
 
     @GetMapping
     private String allVacations(Model model) {
-        List<VacationModel> vacations = repo.findAll();
+        List<VacationModel> vacations = repo.showAllVacations();
         model.addAttribute("vacations", vacations);
         return "vacations/index";
     }
