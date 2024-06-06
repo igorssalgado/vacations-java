@@ -11,12 +11,12 @@ import lombok.Setter;
 
 public class VacationDTO {
 
-    @NotEmpty(message = "Start date is required")
+    // @NotEmpty(message = "Start date is required")
     private Date startDate;
 
     private Date endDate;
 
-    @NotEmpty(message = "Vacation days # area required")
+    // @NotEmpty(message = "Vacation days # area required")
     private Integer vacationDays;
 
     private boolean bonus;
