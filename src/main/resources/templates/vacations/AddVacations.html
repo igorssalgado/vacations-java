@@ -19,21 +19,27 @@
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Start date</span>
                             <input class="form-control" th:field="${vacationDTO.startDate}">
-                          </div>
-                        
+                        </div>
                         <p th:if="${#fields.hasErrors('startDate')}" th:errorclass="text-danger"
                             th:errors="${vacationDTO.startDate}"></p>
                     </div>
 
                     <div class="row mb-3">
-                        <input class="form-control" th:field="${vacationDTO.endDate}" placeholder="End date">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">End date</span>
+                            <input class="form-control" th:field="${vacationDTO.endDate}">
+                        </div>
                         <p th:if="${#fields.hasErrors('endDate')}" th:errorclass="text-danger"
                             th:errors="${vacationDTO.endDate}"></p>
                     </div>
 
-                    
                     <div class="row mb-3">
-                        <input class="form-control" th:field="${vacationDTO.vacationDays}" placeholder="Vacation Days">
+                        <select class="form-select mb-3 sm" aria-label="Vacation days">
+                            <option selected>Vacation days</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                        </select>
+
                         <p th:if="${#fields.hasErrors('vacationDays')}" th:errorclass="text-danger"
                             th:errors="${vacationDTO.vacationDays}"></p>
                     </div>
@@ -41,7 +47,7 @@
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                         <label class="form-check-label" for="flexSwitchCheckDefault">Bonus</label>
-                      </div>
+                    </div>
                 </form>
             </div>
         </div>
