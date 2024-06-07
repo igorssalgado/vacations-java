@@ -1,5 +1,7 @@
 package com.vacationsapp.vacations.services;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,18 @@ public class VacationService {
     }
 
     public VacationModel save(VacationModel vacationModel) {
+        // calculate end date
+        String endDate[] = vacationModel.getStartDate().split("/");
+
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, Integer.parseInt(endDate[0]));
+        c.set(Calendar.MONTH, Integer.parseInt(endDate[1]) - 1);
+        c.set(Calendar.DAY_OF_MONTH, Integer.parseInt(endDate[2]));
+        c.add(Calendar.DATE, vacationModel.getVacationDays() - 1);
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd");
+
+        vacationModel.setEndDate(sdf.format(c.getTime()));
+
         return vacationRepository.save(vacationModel);
     }
 
@@ -28,11 +42,11 @@ public class VacationService {
         return vacationRepository.save(updatedModel);
     }
 
-    public VacationModel findById(String id){
+    public VacationModel findById(String id) {
         return vacationRepository.findById(id).orElse(null);
     }
 
-    public void delete(String id){
+    public void delete(String id) {
         vacationRepository.deleteById(id);
     }
 

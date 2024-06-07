@@ -1,7 +1,5 @@
 package com.vacationsapp.vacations.models;
 
-import java.util.Date;
-
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,9 +10,9 @@ import lombok.Setter;
 public class VacationDTO {
 
     // @NotEmpty(message = "Start date is required")
-    private Date startDate;
+    private String startDate;
 
-    private Date endDate;
+    private String endDate;
 
     // @NotEmpty(message = "Vacation days # area required")
     private Integer vacationDays;
