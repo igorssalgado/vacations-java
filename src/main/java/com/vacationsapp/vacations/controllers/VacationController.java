@@ -39,7 +39,7 @@ public class VacationController {
     }
 
     @PostMapping("/add")
-    public String createProduct(@Valid @ModelAttribute VacationDTO vacationDTO, BindingResult result) {
+    public String createVacation(@Valid @ModelAttribute VacationDTO vacationDTO, BindingResult result) {
 
         if (result.hasErrors()) {
             return "vacations/AddVacations";
@@ -53,6 +53,17 @@ public class VacationController {
 
         repo.save(vacation);
 
+        return "redirect:/vacations";
+    }
+
+    @GetMapping("/edit")
+    public String editVacation(VacationDTO vacationDTO, @RequestParam String id) {
+        return "vacations/EditVacation";
+    }
+
+    @GetMapping("/delete")
+    public String deleteVacation(@RequestParam String id){
+        repo.delete(id);
         return "redirect:/vacations";
     }
 }
