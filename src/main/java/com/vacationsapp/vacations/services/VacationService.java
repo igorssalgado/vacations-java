@@ -1,9 +1,6 @@
 package com.vacationsapp.vacations.services;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +19,21 @@ public class VacationService {
 
     public VacationModel save(VacationModel vacationModel) {
         return vacationRepository.save(vacationModel);
+    }
+
+    public VacationModel update(String id, VacationModel vacationModel) {
+        VacationModel updatedModel = new VacationModel();
+        updatedModel = vacationModel;
+        updatedModel.setId(id);
+        return vacationRepository.save(updatedModel);
+    }
+
+    public VacationModel findById(String id){
+        return vacationRepository.findById(id).orElse(null);
+    }
+
+    public void delete(String id){
+        vacationRepository.deleteById(id);
     }
 
 }
