@@ -20,17 +20,26 @@ public class VacationService {
     }
 
     public VacationModel save(VacationModel vacationModel) {
-        // calculate end date
-        String endDate[] = vacationModel.getStartDate().split("/");
-
+        // format start date
+        String startDate[] = vacationModel.getStartDate().split("-");        
+        Calendar c_startDate = Calendar.getInstance();
+        c_startDate.set(Calendar.YEAR, Integer.parseInt(startDate[0]));
+        c_startDate.set(Calendar.MONTH, Integer.parseInt(startDate[1]) - 1);
+        c_startDate.set(Calendar.DAY_OF_MONTH, Integer.parseInt(startDate[2]));
+        SimpleDateFormat sdf_startDate = new SimpleDateFormat("MMM d, yyyy");
+        
+        // calculate and format end date
+        String endDate[] = vacationModel.getStartDate().split("-");
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR, Integer.parseInt(endDate[0]));
         c.set(Calendar.MONTH, Integer.parseInt(endDate[1]) - 1);
         c.set(Calendar.DAY_OF_MONTH, Integer.parseInt(endDate[2]));
         c.add(Calendar.DATE, vacationModel.getVacationDays() - 1);
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy");
 
         vacationModel.setEndDate(sdf.format(c.getTime()));
+        vacationModel.setStartDate(sdf_startDate.format(c_startDate.getTime()));
+
 
         return vacationRepository.save(vacationModel);
     }
